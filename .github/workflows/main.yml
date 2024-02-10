@@ -6,5 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Check out code
+    - name: Check out ndex code
       run: cat index.html
+    - name: Check out courses code
+      run: cat courses.html
