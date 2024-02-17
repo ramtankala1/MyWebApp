@@ -1,12 +1,23 @@
-name: A workflow for my Hello World website
-on: push
+name: VariablesDemoWorkflow
+on:
+  workflow_dispatch:
+ 
+env:
+  DAY_OF_WEEK: Monday
+ 
 jobs:
-  build-job:
-    name: Hello world action
+  example-job:
     runs-on: ubuntu-latest
+    env:
+      Greeting: Hello 
     steps:
-    - uses: actions/checkout@v1
-    - name: Check out ndex code
-      run: cat index.html
-    - name: Check out courses code
-      run: cat courses.html
+    - name: Print value of Variable
+      run: |
+        echo "Value of Greeting is: ${{ env.Greeting }}"
+        echo "Value of Greeting is: $Greeting"
+        echo "Value of Repo Variable is: ${{ vars.REPO_VARIABLE1 }}"
+    - name: "Say Hello, it's Monday"
+      if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+      run: echo "${{ env.Greeting }} ${{ env.FirstName }}. Today is ${{ env.DAY_OF_WEEK }}!"
+      env:
+        FirstName: Sandeep
